@@ -11,7 +11,7 @@ import java.util.Collections;
  * @author daitor
  *
  */
-public abstract class AbstractAreaShape extends AbstractShape implements
+public abstract class AreaShape extends AbstractShape implements
 		IAreaShape {
 	protected int _widthOffset;
 	protected int _heightOffset;
@@ -23,7 +23,7 @@ public abstract class AbstractAreaShape extends AbstractShape implements
 	/**
 	 * constructor
 	 */
-	public AbstractAreaShape() {
+	public AreaShape() {
 		_side = CloseSide.None;
 		_startLines = new ArrayList<StoredLine>();
 		_endLines = new ArrayList<StoredLine>();

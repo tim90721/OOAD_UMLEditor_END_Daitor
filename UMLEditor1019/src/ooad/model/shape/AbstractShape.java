@@ -7,7 +7,7 @@ import java.awt.Graphics;
  * @author daitor
  *
  */
-public abstract class AbstractShape implements IShape, IGroupable{
+public abstract class AbstractShape implements IShape{
 	int _depth;
 	protected int _startX, _startY;
 	protected int _endX, _endY;

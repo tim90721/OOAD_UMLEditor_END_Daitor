@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
  * @author daitor
  *
  */
-public class ClassGraph extends AbstractAreaShape{
+public class ClassGraph extends AreaShape{
 
 	/**
 	 * constructor

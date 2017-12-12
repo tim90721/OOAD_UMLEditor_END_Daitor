@@ -105,7 +105,7 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		
 		// initial frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("UMLEditor");
+		setTitle("UMLEditor2");
 		setBounds(100, 100, 1000, 800);
 
 		// initial main panel

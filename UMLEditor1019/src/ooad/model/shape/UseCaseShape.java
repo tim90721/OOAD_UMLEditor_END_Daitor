@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
  * @author Daitor
  *
  */
-public class UseCaseShape extends AbstractAreaShape{
+public class UseCaseShape extends AreaShape{
 
 	/**
 	 * constructor

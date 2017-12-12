@@ -2,24 +2,14 @@ package ooad.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import ooad.model.mode.IMode;
 import ooad.model.mode.ModeFactory;
-import ooad.model.shape.AbstractAreaShape;
 import ooad.model.shape.IAreaShape;
 import ooad.model.shape.IGroupShape;
-import ooad.model.shape.IGroupable;
 import ooad.model.shape.IShape;
-import ooad.model.shape.IStringField;
 import ooad.model.shape.ShapeFactory;
-import ooad.model.shape.StringField;
 
 /**
  * model for storing data
@@ -391,7 +381,7 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 	public boolean checkCanUnGroup() {
 		if(_selectShapes.size() == 1) 
 			for (IShape shape : _selectShapes) 
-				if(((IGroupable)shape).isGrouped()) 
+				if(shape.isGrouped()) 
 					return true;
 		return false;
 	}
@@ -402,7 +392,7 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 	@Override
 	public boolean checkCanEditName() {
 		if(_selectShapes.size() == 1){
-			IGroupable shape = (IGroupable)_selectShapes.get(0);
+			IShape shape = (IShape)_selectShapes.get(0);
 			if(!shape.isGrouped())
 				return true;
 		}

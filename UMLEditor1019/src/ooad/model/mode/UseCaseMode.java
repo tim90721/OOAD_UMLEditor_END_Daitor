@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ooad.model.DrawMode;
 import ooad.model.IModel;
-import ooad.model.shape.AbstractAreaShape;
+import ooad.model.shape.AreaShape;
 import ooad.model.shape.IShape;
 import ooad.model.shape.IStringField;
 import ooad.model.shape.StringField;
@@ -26,7 +26,7 @@ public class UseCaseMode extends AbstractMode{
 	@Override
 	public void addShapeString(String name) {
 		ArrayList<IShape> shapes = _model.getStoreShapes();
-		AbstractAreaShape useCase = (AbstractAreaShape)shapes.get(shapes.size() - 1);
+		AreaShape useCase = (AreaShape)shapes.get(shapes.size() - 1);
 		IStringField stringField = new StringField(name, useCase.getStartX(), useCase.getStartY());
 		useCase.addShapeString(stringField, name);
 		useCase.setWidth(stringField.getWidth());

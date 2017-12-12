@@ -39,4 +39,5 @@ public interface IShape {
 	boolean checkIsSelect(IShape selectArea);
 	void setDepth(int depth);
 	int getDepth();
+	boolean isGrouped();
 }
