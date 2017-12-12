@@ -30,10 +30,6 @@ public interface IShape {
 	void isLineEnclose(IShape line, int mouseLineX, int mouseLineY, int closeOffset);
 	boolean isLineEnclose(int mouseLineX, int mouseLineY, int closeOffset);
 	double getDistance(int x1, int y1, int x2, int y2);
-	/**
-	 * set connected line start position
-	 * @param line
-	 */
 	void setLineStartPos(IShape line);
 	void setLineEndPos(IShape line);
 	boolean isLine();

@@ -5,7 +5,7 @@ package ooad.model.shape;
  * @author Daitor
  *
  */
-public interface IGroupShape extends IAreaShape{
+public interface IGroupShape{
 	void addShapeToGroup(IShape shape);
 	int getShapeCount();
 	IShape getStoredShape(int index);

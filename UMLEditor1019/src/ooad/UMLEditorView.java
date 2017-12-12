@@ -7,20 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 
-import ooad.model.CustomFileFilter;
 import ooad.model.DrawMode;
 import ooad.model.IEditNameObserver;
 import ooad.model.IMenuItemGroupSubject;
 import ooad.model.IModel;
 import ooad.model.IPopMsgObserver;
 import ooad.model.IPresentationModel;
-import ooad.model.ISaveFileObserver;
 import ooad.model.Model;
 import ooad.model.PresentationModel;
 import ooad.viewevent.ButtonEnable;
-import ooad.viewevent.CustomButtonEventGetter;
-import ooad.viewevent.CustomMenuEventGetter;
-import ooad.viewevent.CustomMouseEvent;
+import ooad.viewevent.CustomButtonHandlerGetter;
+import ooad.viewevent.CustomMenuHandlerGetter;
+import ooad.viewevent.CustomMouseHandler;
 import ooad.viewevent.MenuItemEnable;
 
 import javax.swing.JFileChooser;
@@ -51,13 +49,12 @@ import java.awt.image.BufferedImage;
  * 
  */
 public class UMLEditorView extends JFrame implements IPopMsgObserver,
-		IEditNameObserver, ISaveFileObserver {
+		IEditNameObserver{
 	private JPanel _panelContentPane;
 	private JMenuBar _menuBar;
 	private JMenu _menuFile;
 	private JMenu _menuEdit;
 	private JMenuItem _itemNew;
-	private JMenuItem _itemSave;
 	private JMenuItem _itemExit;
 	private JMenuItem _itemEditName;
 	private JMenuItem _itemAddNewName;
@@ -70,7 +67,6 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 	private JButton _btnClass;
 	private JButton _btnUseCase;
 	private PaintPanel _pPanel;
-	private JFileChooser _fileChooser;
 	private String _desktopPath;
 	private IPresentationModel _presentationModel;
 	private IModel _model;
@@ -106,10 +102,6 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		this._presentationModel = presentationModel;
 		this._model = this._presentationModel.getModel();
 		_desktopPath = System.getProperty("user.home") + "/Desktop";
-		_fileChooser = new JFileChooser(_desktopPath);
-		_fileChooser.setAcceptAllFileFilterUsed(false);
-		_fileChooser.addChoosableFileFilter(new CustomFileFilter("jpg"));
-		_fileChooser.addChoosableFileFilter(new CustomFileFilter("png"));
 		
 		// initial frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,7 +125,7 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		initiateComponent();
 
 		// add popup message box listener
-		CustomMouseEvent mouseEvent = new CustomMouseEvent(_presentationModel);
+		CustomMouseHandler mouseEvent = new CustomMouseHandler(_presentationModel);
 		mouseEvent.registerPopMsgObserver(this);
 
 		// add canvas
@@ -160,7 +152,7 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 	 * initial menus
 	 */
 	private void initiateMenu() {
-		CustomMenuEventGetter menuEventGetter = new CustomMenuEventGetter(
+		CustomMenuHandlerGetter menuEventGetter = new CustomMenuHandlerGetter(
 				_presentationModel);
 		_menuBar = new JMenuBar();
 		setJMenuBar(_menuBar);
@@ -171,12 +163,8 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		_menuBar.add(_menuFile);
 
 		_itemNew = new JMenuItem("New File");
-		_itemNew.addActionListener(menuEventGetter.getNewFileEvent());
+		_itemNew.addActionListener(menuEventGetter.getNewFileHandler());
 		_menuFile.add(_itemNew);
-
-		_itemSave = new JMenuItem("Save...");
-		_itemSave.addActionListener(menuEventGetter.getSaveFileEvent());
-		_menuFile.add(_itemSave);
 
 		_itemExit = new JMenuItem("Exit");
 		_menuFile.add(_itemExit);
@@ -193,7 +181,7 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		_menuBar.add(_menuEdit);
 
 		_itemEditName = new JMenuItem("Edit Name");
-		_itemEditName.addActionListener(menuEventGetter.getEditNameEvent());
+		_itemEditName.addActionListener(menuEventGetter.getEditNameHandler());
 		_menuEdit.add(_itemEditName);
 
 		_itemAddNewName = new JMenuItem("Add New Name");
@@ -202,11 +190,11 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		_menuEdit.addSeparator();
 
 		_itemGroup = new JMenuItem("Group");
-		_itemGroup.addActionListener(menuEventGetter.getGroupMenuEvent());
+		_itemGroup.addActionListener(menuEventGetter.getGroupMenuHandler());
 		_menuEdit.add(_itemGroup);
 
 		_itemUnGroup = new JMenuItem("UnGroup");
-		_itemUnGroup.addActionListener(menuEventGetter.getUnGroupMenuEvent());
+		_itemUnGroup.addActionListener(menuEventGetter.getUnGroupMenuHandler());
 		_menuEdit.add(_itemUnGroup);
 
 		MenuItemEnable menuItemEnable = new MenuItemEnable(_itemGroup,
@@ -216,14 +204,13 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 				.registerMenuItemGroupObserver(menuItemEnable);
 		menuEventGetter.registerMenuItemGroupObserver(menuItemEnable);
 		menuEventGetter.registerEditNameObserver(this);
-		menuEventGetter.registerSaveObserver(this);
 	}
 
 	/**
 	 * initial buttons
 	 */
 	private void initiateButtons() {
-		CustomButtonEventGetter buttonEvent = new CustomButtonEventGetter(
+		CustomButtonHandlerGetter buttonEvent = new CustomButtonHandlerGetter(
 				_presentationModel);
 
 		_btnSelect = new JButton();
@@ -233,25 +220,25 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		_btnAssociaLine = new JButton();
 		configButton(_btnAssociaLine, 1);
 		_btnAssociaLine.addActionListener(buttonEvent
-				.getAssociaLineClickEvent());
+				.getAssociaLineClickHandler());
 
 		_btnGeneralLine = new JButton();
 		configButton(_btnGeneralLine, 2);
 		_btnGeneralLine.addActionListener(buttonEvent
-				.getGeneralLineClickEvent());
+				.getGeneralLineClickHandler());
 
 		_btnCompositionLine = new JButton();
 		configButton(_btnCompositionLine, 3);
 		_btnCompositionLine.addActionListener(buttonEvent
-				.getCompositionLineClickEvent());
+				.getCompositionLineClickHandler());
 
 		_btnClass = new JButton();
 		configButton(_btnClass, 4);
-		_btnClass.addActionListener(buttonEvent.getClassModeClickEvent());
+		_btnClass.addActionListener(buttonEvent.getClassModeClickHandler());
 
 		_btnUseCase = new JButton();
 		configButton(_btnUseCase, 5);
-		_btnUseCase.addActionListener(buttonEvent.getUseCaseModeClickEvent());
+		_btnUseCase.addActionListener(buttonEvent.getUseCaseModeClickHandler());
 
 		ButtonEnable btnEnable = new ButtonEnable(_btnSelect, _btnAssociaLine,
 				_btnGeneralLine, _btnCompositionLine, _btnClass, _btnUseCase,
@@ -328,7 +315,7 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 	 * popup message box for edit name
 	 */
 	@Override
-	public void updateEditName() {
+	public void editName() {
 		String name = showMsgBox();
 		_model.editShapeName(name);
 	}
@@ -343,36 +330,5 @@ public class UMLEditorView extends JFrame implements IPopMsgObserver,
 		if (name == null)
 			name = " ";
 		return name;
-	}
-
-	/**
-	 * handle menu item save file event
-	 */
-	@Override
-	public void callSaveFileDialog() {
-		int returnValue = _fileChooser.showSaveDialog(this);
-		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			File file = _fileChooser.getSelectedFile();
-			FileFilter filter = _fileChooser.getFileFilter();
-			String filetype = ((CustomFileFilter)filter).getType();
-			try{
-				saveFile(file, filetype);
-			}catch(IOException ex){
-				ex.printStackTrace();
-			}
-		}
-	}
-	
-	/**
-	 * save image file
-	 * @param file file
-	 * @throws IOException
-	 */
-	private void saveFile(File file, String fileType) throws IOException{
-		BufferedImage image = new BufferedImage(_pPanel.getWidth(),
-				_pPanel.getHeight(), _model.getStoreImageType(fileType));
-		_pPanel.paint(image.getGraphics());
-//		ImageIO.write(image, fileType, file);
-		_model.saveFile(image, file, fileType);
 	}
 }

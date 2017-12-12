@@ -26,7 +26,6 @@ public class UseCaseShape extends AbstractAreaShape{
 	 */
 	@Override
 	public void drawShape(Graphics g) {
-		super.drawShape(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(3));
 		g2.setColor(Color.WHITE);
@@ -34,6 +33,7 @@ public class UseCaseShape extends AbstractAreaShape{
 		g2.setColor(Color.BLACK);
 		g2.drawOval(getStartX(), getStartY(), getWidth(), getHeight());
 		g2.setStroke(new BasicStroke(1));
+		super.drawShape(g);
 	}
 
 	/**
@@ -41,7 +41,18 @@ public class UseCaseShape extends AbstractAreaShape{
 	 */
 	@Override
 	public void addShapeString(IStringField stringField, String name) {
-		stringField.setStart(getStartX() + stringField.getFontSize(),
-				getStartY() + (int)(1.8 * stringField.getFontSize()));
+		stringField.setStartX(getStartX() + stringField.getFontSize());
+		stringField.setStartY(getStartY() + (int)(1.8 * stringField.getFontSize()));
+		super.addShapeString(stringField, name);
+//		stringField.setStart(getStartX() + stringField.getFontSize(),
+//				getStartY() + (int)(1.8 * stringField.getFontSize()));
+	}
+
+	@Override
+	public void editShapeString(String name) {
+		super.editShapeString(name);
+		IStringField stringField = _strings.get(0);
+		stringField.setStartX(getStartX() + stringField.getFontSize());
+		stringField.setStartY(getStartY() + (int)(1.8 * stringField.getFontSize()));
 	}
 }

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import ooad.model.IModel;
 import ooad.model.IPaintObserver;
 import ooad.model.Model;
-import ooad.viewevent.CustomMouseEvent;
+import ooad.viewevent.CustomMouseHandler;
 
 /**
  * custom paint main panel
@@ -26,7 +26,7 @@ public class PaintPanel extends JPanel implements IPaintObserver{
 	 * @param model model
 	 * @param mouseEvent mouse event for painting
 	 */
-	public PaintPanel(IModel model, CustomMouseEvent mouseEvent) {
+	public PaintPanel(IModel model, CustomMouseHandler mouseEvent) {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		setBackground(Color.WHITE);
 		
@@ -40,9 +40,9 @@ public class PaintPanel extends JPanel implements IPaintObserver{
 	 * initial mouse event
 	 * @param mouseEvent mouse event for recording mouse location
 	 */
-	private void initiateMouseListener(CustomMouseEvent mouseEvent){
-		addMouseListener(mouseEvent.getPressedEvent());
-		addMouseMotionListener(mouseEvent.getDraggedEvent());
+	private void initiateMouseListener(CustomMouseHandler mouseEvent){
+		addMouseListener(mouseEvent.getPressedHandler());
+		addMouseMotionListener(mouseEvent.getDraggedHandler());
 		addMouseListener(mouseEvent.getReleasedEvent());
 	}
 	

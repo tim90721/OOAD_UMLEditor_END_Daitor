@@ -3,7 +3,6 @@ package ooad.model.mode;
 import java.awt.Graphics;
 
 import ooad.model.shape.IShape;
-import ooad.model.shape.IStringField;
 
 /**
  * mode interface
@@ -17,6 +16,6 @@ public interface IMode {
 	boolean checkIsSelect(IShape selectArea);
 //	boolean moveSelectShape(int mouseX, int mouseY);
 	void isLineEnclose(IShape line, int mouseX, int mouseY, int closeOffset);
-	void addShapeString(IStringField stringField, String name);
+	void addShapeString(String name);
 	void setMode();
 }

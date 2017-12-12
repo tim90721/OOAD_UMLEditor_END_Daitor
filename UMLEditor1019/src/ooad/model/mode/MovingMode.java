@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import ooad.model.DrawMode;
 import ooad.model.IModel;
 import ooad.model.shape.IShape;
-import ooad.model.shape.IStringField;
 
 /**
  * drawing method for moving mode
@@ -27,7 +26,7 @@ public class MovingMode extends AbstractMode{
 	 * this mode override to do nothing
 	 */
 	@Override
-	public void addShapeString(IStringField stringField, String name) {
+	public void addShapeString(String name) {
 	}
 
 	/**

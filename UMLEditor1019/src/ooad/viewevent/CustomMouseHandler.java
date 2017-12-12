@@ -15,7 +15,7 @@ import ooad.model.IPresentationModel;
  * @author Daitor
  *
  */
-public class CustomMouseEvent implements IPopMsgSubject{
+public class CustomMouseHandler implements IPopMsgSubject{
 	private IPresentationModel _presentationModel;
 	private IModel _model;
 	private ArrayList<IPopMsgObserver> _observers;
@@ -24,7 +24,7 @@ public class CustomMouseEvent implements IPopMsgSubject{
 	 * constructor
 	 * @param presentationModel presentation model
 	 */
-	public CustomMouseEvent(IPresentationModel presentationModel) {
+	public CustomMouseHandler(IPresentationModel presentationModel) {
 		_presentationModel = presentationModel;
 		this._model = _presentationModel.getModel();
 		this._observers = new ArrayList<IPopMsgObserver>();
@@ -34,24 +34,24 @@ public class CustomMouseEvent implements IPopMsgSubject{
 	 * get mouse pressed event handler
 	 * @return mouse pressed event handler
 	 */
-	public CustomMousePressedEvent getPressedEvent() {
-		return new CustomMousePressedEvent(_presentationModel);
+	public CustomMousePressedHandler getPressedHandler() {
+		return new CustomMousePressedHandler(_presentationModel);
 	}
 	
 	/**
 	 * get mouse dragging event handler
 	 * @return mouse dragging event handler
 	 */
-	public CustomMouseDraggedEvent getDraggedEvent() {
-		return new CustomMouseDraggedEvent(_presentationModel);
+	public CustomMouseDraggedHandler getDraggedHandler() {
+		return new CustomMouseDraggedHandler(_presentationModel);
 	}
 	
 	/**
 	 * get mouse release event handler
 	 * @return mouse release event handler
 	 */
-	public CustomMouseReleaseEvent getReleasedEvent() {
-		return new CustomMouseReleaseEvent(_presentationModel);
+	public CustomMouseReleaseHandler getReleasedEvent() {
+		return new CustomMouseReleaseHandler(_presentationModel);
 	}
 	
 	/**
@@ -85,11 +85,11 @@ public class CustomMouseEvent implements IPopMsgSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class CustomMousePressedEvent extends MouseAdapter{
+	private class CustomMousePressedHandler extends MouseAdapter{
 		private IPresentationModel _presentationModel;
 		private IModel _model;
 		
-		public CustomMousePressedEvent(IPresentationModel presentationModel) {
+		public CustomMousePressedHandler(IPresentationModel presentationModel) {
 			_presentationModel = presentationModel;
 			this._model = _presentationModel.getModel();
 		}
@@ -111,11 +111,11 @@ public class CustomMouseEvent implements IPopMsgSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class CustomMouseDraggedEvent extends MouseAdapter{
+	private class CustomMouseDraggedHandler extends MouseAdapter{
 		private IPresentationModel _presentationModel;
 		private IModel _model;
 		
-		public CustomMouseDraggedEvent(IPresentationModel presentationModel) {
+		public CustomMouseDraggedHandler(IPresentationModel presentationModel) {
 			_presentationModel = presentationModel;
 			this._model = _presentationModel.getModel();
 		}
@@ -149,11 +149,11 @@ public class CustomMouseEvent implements IPopMsgSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class CustomMouseReleaseEvent extends MouseAdapter{
+	private class CustomMouseReleaseHandler extends MouseAdapter{
 		private IPresentationModel _presentationModel;
 		private IModel _model;
 		
-		public CustomMouseReleaseEvent(IPresentationModel presentationModel) {
+		public CustomMouseReleaseHandler(IPresentationModel presentationModel) {
 			_presentationModel = presentationModel;
 			this._model = _presentationModel.getModel();
 		}

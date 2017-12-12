@@ -17,6 +17,7 @@ public abstract class BasicLine extends AbstractShape implements IBasicLine{
 	protected double _angle;
 	private int _mouseEndX;
 	private int _mouseEndY;
+	protected int _rotateEndX, _rotateEndY;
 	private int _hashNumber;
 	
 	/**
@@ -37,7 +38,7 @@ public abstract class BasicLine extends AbstractShape implements IBasicLine{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(5));
 		g2.rotate(getAngle(), getStartX(), getStartY());
-		g2.drawLine(getStartX(), getStartY(), getEndX(), getEndY());
+		g2.drawLine(getStartX(), getStartY(), _rotateEndX, _rotateEndY);
 		g2.setStroke(new BasicStroke(1));
 		g2.rotate(-1 * getAngle(), getStartX(), getStartY());
 	}
@@ -173,16 +174,30 @@ public abstract class BasicLine extends AbstractShape implements IBasicLine{
 		setDifY(getMouseEndY() - getStartY());
 		setAngle(getDifX(), getDifY());
 		_distance = getDistance(getMouseEndX(), getMouseEndY(), getStartX(), getStartY());
-		setEndX(getStartX() + (int)_distance);
-		setEndY(getStartY());
+		setRotateXY(getStartX() + (int)_distance, getStartY());
+		setEndX(endX);
+		setEndY(endY);
 	}
-
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public void setSelected(boolean isSelect) {
+	
+	protected void setRotateXY(int x, int y) {
+		_rotateEndX = x;
+		_rotateEndY = y;
 	}
+	
+	protected int getRotateX() {
+		return _rotateEndX;
+	}
+	
+	protected int getRotateY() {
+		return _rotateEndY;
+	}
+	
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public void setSelected(boolean isSelect) {
+//	}
 
 	/**
 	 * do nothing for this method

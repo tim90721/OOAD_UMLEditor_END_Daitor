@@ -51,6 +51,4 @@ public interface IModel {
 	boolean checkCanEditName();
 	void editShapeName(String name);
 	void deleteAllShapes();
-	void saveFile(RenderedImage image, File file, String fileType) throws IOException;
-	int getStoreImageType(String fileType);
 }

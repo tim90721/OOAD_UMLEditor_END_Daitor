@@ -291,6 +291,9 @@ public abstract class AbstractShape implements IShape, IGroupable{
 	 */
 	@Override
 	public boolean checkIsSelect(int x1, int y1, int x2, int y2) {
+		if (getStartX() > x1 && getStartY() > y1
+				&& getEndX() < x2 && getEndY() < y2) 
+			return true;
 		return false;
 	}
 
@@ -299,6 +302,9 @@ public abstract class AbstractShape implements IShape, IGroupable{
 	 */
 	@Override
 	public boolean checkIsSelect(IShape selectArea) {
+		if (getStartX() < selectArea.getStartX() && getEndX() > selectArea.getStartX()
+				&& getStartY() < selectArea.getStartY()	&& getEndY() > selectArea.getStartY()) 
+			return true;
 		return false;
 	}
 

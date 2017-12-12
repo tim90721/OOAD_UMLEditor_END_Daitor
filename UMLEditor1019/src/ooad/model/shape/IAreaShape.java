@@ -14,4 +14,5 @@ public interface IAreaShape {
 	void setCloseSide(CloseSide side);
 	CloseSide getCloseSide();
 	void addShapeString(IStringField stringField, String name);
+	void editShapeString(String name);
 }

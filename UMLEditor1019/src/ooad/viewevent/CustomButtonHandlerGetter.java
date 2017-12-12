@@ -15,7 +15,7 @@ import ooad.model.IPresentationModel;
  * @author Daitor
  *
  */
-public class CustomButtonEventGetter implements IModeSwitchSubject{
+public class CustomButtonHandlerGetter implements IModeSwitchSubject{
 	private IPresentationModel _presentationModel;
 	private IModel _model;
 	private IModeSwitchObserver _oBtnEnable;
@@ -24,7 +24,7 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * constructor
 	 * @param presentationModel presentation model
 	 */
-	public CustomButtonEventGetter(IPresentationModel presentationModel){
+	public CustomButtonHandlerGetter(IPresentationModel presentationModel){
 		this._presentationModel = presentationModel;
 		this._model = this._presentationModel.getModel();
 	}
@@ -49,48 +49,48 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * get select button click event handler
 	 * @return select button click event handler
 	 */
-	public BtnSelectClickEvent getSelectClickEvent(){
-		return new BtnSelectClickEvent(_presentationModel);
+	public BtnSelectClickHandler getSelectClickEvent(){
+		return new BtnSelectClickHandler(_presentationModel);
 	}
 	
 	/**
 	 * get association line button click event handler
 	 * @return association line button click event handler
 	 */
-	public BtnAssociaLineClickEvent getAssociaLineClickEvent(){
-		return new BtnAssociaLineClickEvent(_presentationModel);
+	public BtnAssociaLineClickHandler getAssociaLineClickHandler(){
+		return new BtnAssociaLineClickHandler(_presentationModel);
 	}
 	
 	/**
 	 * get general line click button event handler
 	 * @return general line click button event handler
 	 */
-	public BtnGeneralLineClickEvent getGeneralLineClickEvent(){
-		return new BtnGeneralLineClickEvent(_presentationModel);
+	public BtnGeneralLineClickHandler getGeneralLineClickHandler(){
+		return new BtnGeneralLineClickHandler(_presentationModel);
 	}
 	
 	/**
 	 * get composition line button click event handler
 	 * @return composition line button click event handler
 	 */
-	public BtnCompositionLineClickEvent getCompositionLineClickEvent(){
-		return new BtnCompositionLineClickEvent(_presentationModel);
+	public BtnCompositionLineClickHandler getCompositionLineClickHandler(){
+		return new BtnCompositionLineClickHandler(_presentationModel);
 	}
 	
 	/**
 	 * get class graph button click event handler
 	 * @return class graph button click event handler
 	 */
-	public BtnClassModeClickEvent getClassModeClickEvent(){
-		return new BtnClassModeClickEvent(_presentationModel);
+	public BtnClassModeClickHandler getClassModeClickHandler(){
+		return new BtnClassModeClickHandler(_presentationModel);
 	}
 	
 	/**
 	 * get use class button click event handler
 	 * @return use class button click event handler
 	 */
-	public BtnUseCaseModeClickEvent getUseCaseModeClickEvent(){
-		return new BtnUseCaseModeClickEvent(_presentationModel);
+	public BtnUseCaseModeClickHandler getUseCaseModeClickHandler(){
+		return new BtnUseCaseModeClickHandler(_presentationModel);
 	}
 	
 	/**
@@ -98,11 +98,11 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	class CustomBtnEvent implements ActionListener{
+	class CustomBtnHandler implements ActionListener{
 		private IPresentationModel _presentationModel;
 		private IModel _model;
 		
-		public CustomBtnEvent(IPresentationModel presentationModel){
+		public CustomBtnHandler(IPresentationModel presentationModel){
 			this._presentationModel = presentationModel;
 			this._model = this._presentationModel.getModel();
 		}
@@ -121,9 +121,9 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class BtnSelectClickEvent extends CustomBtnEvent{
+	private class BtnSelectClickHandler extends CustomBtnHandler{
 		
-		public BtnSelectClickEvent(IPresentationModel presentationModel) {
+		public BtnSelectClickHandler(IPresentationModel presentationModel) {
 			super(presentationModel);
 		}
 		
@@ -143,9 +143,9 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class BtnAssociaLineClickEvent extends CustomBtnEvent{
+	private class BtnAssociaLineClickHandler extends CustomBtnHandler{
 		
-		public BtnAssociaLineClickEvent(IPresentationModel presentationModel){
+		public BtnAssociaLineClickHandler(IPresentationModel presentationModel){
 			super(presentationModel);
 		}
 
@@ -165,9 +165,9 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class BtnGeneralLineClickEvent extends CustomBtnEvent{
+	private class BtnGeneralLineClickHandler extends CustomBtnHandler{
 		
-		public BtnGeneralLineClickEvent(IPresentationModel presentationModel){
+		public BtnGeneralLineClickHandler(IPresentationModel presentationModel){
 			super(presentationModel);
 		}
 
@@ -187,9 +187,9 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class BtnCompositionLineClickEvent extends CustomBtnEvent{
+	private class BtnCompositionLineClickHandler extends CustomBtnHandler{
 		
-		public BtnCompositionLineClickEvent(IPresentationModel presentationModel){
+		public BtnCompositionLineClickHandler(IPresentationModel presentationModel){
 			super(presentationModel);
 		}
 
@@ -209,9 +209,9 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class BtnClassModeClickEvent extends CustomBtnEvent{
+	private class BtnClassModeClickHandler extends CustomBtnHandler{
 		
-		public BtnClassModeClickEvent(IPresentationModel presentationModel){
+		public BtnClassModeClickHandler(IPresentationModel presentationModel){
 			super(presentationModel);
 		}
 
@@ -231,9 +231,9 @@ public class CustomButtonEventGetter implements IModeSwitchSubject{
 	 * @author Daitor
 	 *
 	 */
-	private class BtnUseCaseModeClickEvent extends CustomBtnEvent{
+	private class BtnUseCaseModeClickHandler extends CustomBtnHandler{
 		
-		public BtnUseCaseModeClickEvent(IPresentationModel presentationModel){
+		public BtnUseCaseModeClickHandler(IPresentationModel presentationModel){
 			super(presentationModel);
 		}
 

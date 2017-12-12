@@ -7,6 +7,7 @@ import ooad.model.IModel;
 import ooad.model.shape.AbstractAreaShape;
 import ooad.model.shape.IShape;
 import ooad.model.shape.IStringField;
+import ooad.model.shape.StringField;
 
 public class UseCaseMode extends AbstractMode{
 
@@ -20,16 +21,18 @@ public class UseCaseMode extends AbstractMode{
 
 	/**
 	 * add string field to use case 
-	 * @param stringField string field need to add to use case
 	 * @param name string field name
 	 */
 	@Override
-	public void addShapeString(IStringField stringField, String name) {
+	public void addShapeString(String name) {
 		ArrayList<IShape> shapes = _model.getStoreShapes();
 		AbstractAreaShape useCase = (AbstractAreaShape)shapes.get(shapes.size() - 1);
+		IStringField stringField = new StringField(name, useCase.getStartX(), useCase.getStartY());
 		useCase.addShapeString(stringField, name);
-		shapes.remove(useCase);
-		storeShape(stringField);
+		useCase.setWidth(stringField.getWidth());
+		useCase.setHeight(stringField.getHeight());
+//		shapes.remove(useCase);
+//		storeShape(stringField);
 		_model.notifyPaintChange();
 	}
 

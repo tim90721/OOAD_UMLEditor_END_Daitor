@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import ooad.model.DrawMode;
 import ooad.model.IModel;
 import ooad.model.shape.IShape;
-import ooad.model.shape.IStringField;
 
 /**
  * drawing method related to select mode
@@ -55,6 +54,7 @@ public class SelectMode extends AbstractMode {
 					shape.setSelected(true);
 					_selectShapes.add(shape);
 					_hasSelectShape = true;
+					System.out.println("bb");
 				}
 		} else{
 			for (IShape shape : _model.getStoreShapes())
@@ -62,6 +62,7 @@ public class SelectMode extends AbstractMode {
 					shape.setSelected(true);
 					_selectShapes.add(shape);
 					_hasSelectShape = true;
+					System.out.println("ss");
 				}
 			if(_selectShapes.size() > 0){
 				checkShapeDepth();
@@ -134,7 +135,7 @@ public class SelectMode extends AbstractMode {
 	 * this class override to do nothing
 	 */
 	@Override
-	public void addShapeString(IStringField stringField, String name) {
+	public void addShapeString(String name) {
 	}
 
 	/**

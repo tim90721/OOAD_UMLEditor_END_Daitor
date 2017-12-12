@@ -11,8 +11,6 @@ import ooad.model.IMenuItemGroupObserver;
 import ooad.model.IMenuItemGroupSubject;
 import ooad.model.IModel;
 import ooad.model.IPresentationModel;
-import ooad.model.ISaveFileObserver;
-import ooad.model.ISaveFileSubject;
 
 /**
  * custom menu event handler getter
@@ -20,13 +18,12 @@ import ooad.model.ISaveFileSubject;
  * @author Daitor
  *
  */
-public class CustomMenuEventGetter implements IMenuItemGroupSubject,
-		IEditNameSubject, ISaveFileSubject {
+public class CustomMenuHandlerGetter implements IMenuItemGroupSubject,
+		IEditNameSubject{
 	private IPresentationModel _presentationModel;
 	private IModel _model;
 	private ArrayList<IMenuItemGroupObserver> _groupObservers;
 	private ArrayList<IEditNameObserver> _editNameObservers;
-	private ArrayList<ISaveFileObserver> _saveFileObservers;
 
 	/**
 	 * constructor
@@ -34,12 +31,11 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * @param presentationModel
 	 *            presentation model
 	 */
-	public CustomMenuEventGetter(IPresentationModel presentationModel) {
+	public CustomMenuHandlerGetter(IPresentationModel presentationModel) {
 		_presentationModel = presentationModel;
 		_model = _presentationModel.getModel();
 		_groupObservers = new ArrayList<IMenuItemGroupObserver>();
 		_editNameObservers = new ArrayList<IEditNameObserver>();
-		_saveFileObservers = new ArrayList<ISaveFileObserver>();
 	}
 
 	/**
@@ -47,8 +43,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * 
 	 * @return group menu event handler
 	 */
-	public CustomMenuEvent getGroupMenuEvent() {
-		return new MenuItemGroupEvent(_presentationModel);
+	public CustomMenuHandler getGroupMenuHandler() {
+		return new MenuItemGroupHandler(_presentationModel);
 	}
 
 	/**
@@ -56,8 +52,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * 
 	 * @return ungroup menu event handler
 	 */
-	public CustomMenuEvent getUnGroupMenuEvent() {
-		return new MenuItemUnGroupEvent(_presentationModel);
+	public CustomMenuHandler getUnGroupMenuHandler() {
+		return new MenuItemUnGroupHandler(_presentationModel);
 	}
 
 	/**
@@ -65,8 +61,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * 
 	 * @return menu item edit name event handler
 	 */
-	public CustomMenuEvent getEditNameEvent() {
-		return new MenuItemEditNameEvent(_presentationModel);
+	public CustomMenuHandler getEditNameHandler() {
+		return new MenuItemEditNameHandler(_presentationModel);
 	}
 
 	/**
@@ -74,16 +70,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * 
 	 * @return menu item new file event handler
 	 */
-	public CustomMenuEvent getNewFileEvent() {
-		return new MenuItemNewEvent(_presentationModel);
-	}
-	
-	/**
-	 * get menu item save file event handler
-	 * @return menu item save file event handler
-	 */
-	public CustomMenuEvent getSaveFileEvent(){
-		return new MenuItemSaveEvent(_presentationModel);
+	public CustomMenuHandler getNewFileHandler() {
+		return new MenuItemNewHandler(_presentationModel);
 	}
 	
 	/**
@@ -117,22 +105,7 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	@Override
 	public void notifyEditName() {
 		for (IEditNameObserver observer : _editNameObservers)
-			observer.updateEditName();
-	}
-
-	/**
-	 * register save file listener
-	 */
-	@Override
-	public void registerSaveObserver(ISaveFileObserver observer) {
-		_saveFileObservers.add(observer);
-	}
-
-	@Override
-	public void notifySaveFile() {
-		for (ISaveFileObserver observer : _saveFileObservers) {
-			observer.callSaveFileDialog();
-		}
+			observer.editName();
 	}
 
 	/**
@@ -141,11 +114,11 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * @author Daitor
 	 *
 	 */
-	abstract class CustomMenuEvent implements ActionListener {
+	abstract class CustomMenuHandler implements ActionListener {
 		private IPresentationModel _presentationModel;
 		private IModel _model;
 
-		public CustomMenuEvent(IPresentationModel presentationModel) {
+		public CustomMenuHandler(IPresentationModel presentationModel) {
 			_presentationModel = presentationModel;
 			_model = _presentationModel.getModel();
 		}
@@ -157,8 +130,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * @author Daitor
 	 *
 	 */
-	private class MenuItemGroupEvent extends CustomMenuEvent {
-		public MenuItemGroupEvent(IPresentationModel presentationModel) {
+	private class MenuItemGroupHandler extends CustomMenuHandler {
+		public MenuItemGroupHandler(IPresentationModel presentationModel) {
 			super(presentationModel);
 		}
 
@@ -178,8 +151,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * @author Daitor
 	 *
 	 */
-	private class MenuItemUnGroupEvent extends CustomMenuEvent {
-		public MenuItemUnGroupEvent(IPresentationModel presentationModel) {
+	private class MenuItemUnGroupHandler extends CustomMenuHandler {
+		public MenuItemUnGroupHandler(IPresentationModel presentationModel) {
 			super(presentationModel);
 		}
 
@@ -199,8 +172,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * @author Daitor
 	 *
 	 */
-	private class MenuItemEditNameEvent extends CustomMenuEvent {
-		public MenuItemEditNameEvent(IPresentationModel presentationModel) {
+	private class MenuItemEditNameHandler extends CustomMenuHandler {
+		public MenuItemEditNameHandler(IPresentationModel presentationModel) {
 			super(presentationModel);
 		}
 
@@ -219,8 +192,8 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 	 * @author daitor
 	 *
 	 */
-	private class MenuItemNewEvent extends CustomMenuEvent {
-		public MenuItemNewEvent(IPresentationModel presentationModel) {
+	private class MenuItemNewHandler extends CustomMenuHandler {
+		public MenuItemNewHandler(IPresentationModel presentationModel) {
 			super(presentationModel);
 		}
 
@@ -230,26 +203,6 @@ public class CustomMenuEventGetter implements IMenuItemGroupSubject,
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			_presentationModel.newCanvas();
-		}
-	}
-
-	/**
-	 * menu item save event handler
-	 * 
-	 * @author daitor
-	 *
-	 */
-	private class MenuItemSaveEvent extends CustomMenuEvent {
-		public MenuItemSaveEvent(IPresentationModel presentationModel) {
-			super(presentationModel);
-		}
-
-		/**
-		 * handle menu item save event
-		 */
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			notifySaveFile();
 		}
 	}
 }

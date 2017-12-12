@@ -18,7 +18,7 @@ public abstract class AbstractAreaShape extends AbstractShape implements
 	protected CloseSide _side;
 	protected ArrayList<StoredLine> _startLines;
 	protected ArrayList<StoredLine> _endLines;
-	protected ArrayList<StringField> _strings;
+	protected ArrayList<IStringField> _strings;
 
 	/**
 	 * constructor
@@ -27,7 +27,7 @@ public abstract class AbstractAreaShape extends AbstractShape implements
 		_side = CloseSide.None;
 		_startLines = new ArrayList<StoredLine>();
 		_endLines = new ArrayList<StoredLine>();
-		_strings = new ArrayList<StringField>();
+		_strings = new ArrayList<IStringField>();
 	}
 	
 	/**
@@ -352,6 +352,8 @@ public abstract class AbstractAreaShape extends AbstractShape implements
 			}
 		}
 		g.setColor(Color.BLACK);
+		for (IStringField stringField : _strings) 
+			stringField.drawString(g);
 	}
 
 	/**
@@ -362,6 +364,8 @@ public abstract class AbstractAreaShape extends AbstractShape implements
 	@Override
 	public void movePos(int difX, int difY) {
 		setStart(_startX - difX, _startY - difY);
+		for (IStringField stringField : _strings) 
+			stringField.movPos(difX, difY);
 	}
 
 	/**
@@ -400,6 +404,19 @@ public abstract class AbstractAreaShape extends AbstractShape implements
 	@Override
 	public boolean isGrouped() {
 		return false;
+	}
+
+	@Override
+	public void addShapeString(IStringField stringField, String name) {
+		_strings.add(stringField);
+	}
+
+	@Override
+	public void editShapeString(String name) {
+		IStringField stringField = _strings.get(0);
+		stringField.setName(name);
+		setWidth(stringField.getWidth());
+		setHeight(stringField.getHeight());
 	}
 }
 

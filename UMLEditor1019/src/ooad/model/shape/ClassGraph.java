@@ -27,7 +27,6 @@ public class ClassGraph extends AbstractAreaShape{
 	 */
 	@Override
 	public void drawShape(Graphics g){
-		super.drawShape(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(3));
 		g2.setColor(Color.WHITE);
@@ -35,6 +34,7 @@ public class ClassGraph extends AbstractAreaShape{
 		g2.setColor(Color.BLACK);
 		g2.drawRect(getStartX(), getStartY(), getWidth(), getHeight());
 		g2.setStroke(new BasicStroke(1));
+		super.drawShape(g);
 	}
 	
 	/**
@@ -44,7 +44,18 @@ public class ClassGraph extends AbstractAreaShape{
 	 */
 	@Override
 	public void addShapeString(IStringField stringField, String name) {
-		stringField.setStart(getStartX() + stringField.getFontSize(),
-				getStartY() + stringField.getFontSize());
+		stringField.setStartX(getStartX() + stringField.getFontSize());
+		stringField.setStartY(getStartY() + stringField.getFontSize());
+		super.addShapeString(stringField, name);
+//		stringField.setStart(getStartX() + stringField.getFontSize(),
+//				getStartY() + stringField.getFontSize());
+	}
+
+	@Override
+	public void editShapeString(String name) {
+		super.editShapeString(name);
+		IStringField stringField = _strings.get(0);
+		stringField.setStartX(getStartX() + stringField.getFontSize());
+		stringField.setStartY(getStartY() + stringField.getFontSize());
 	}
 }

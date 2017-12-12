@@ -4,7 +4,6 @@ import ooad.model.DrawMode;
 import ooad.model.IModel;
 import ooad.model.shape.IBasicLine;
 import ooad.model.shape.IShape;
-import ooad.model.shape.IStringField;
 
 /**
  * basic drawing method for line
@@ -81,7 +80,7 @@ public abstract class BasicLineMode extends AbstractMode {
 	 * do nothing
 	 */
 	@Override
-	public void addShapeString(IStringField stringField, String name) {
+	public void addShapeString(String name) {
 	}
 
 	/**

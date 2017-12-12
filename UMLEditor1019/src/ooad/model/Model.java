@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import ooad.model.mode.IMode;
 import ooad.model.mode.ModeFactory;
 import ooad.model.shape.AbstractAreaShape;
+import ooad.model.shape.IAreaShape;
 import ooad.model.shape.IGroupShape;
 import ooad.model.shape.IGroupable;
 import ooad.model.shape.IShape;
@@ -65,8 +66,10 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 		_userMode.drawing(g, _shape, _mouseX, _mouseY, _closeOffset);
 		if (!isMousePressed() && !isMouseMoving()) 
 			_userMode.storeShape(_shape);
-		for (IShape shape : _shapes)
+		for (IShape shape : _shapes){
 			shape.drawShape(g);
+			System.out.println(shape.getShapeName());
+		}
 		if (isMousePressed())
 			_shape.drawShape(g);
 	}
@@ -304,8 +307,8 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 	 */
 	@Override
 	public void addShapeString(String name) {
-		_shape = new StringField((AbstractAreaShape)_shape, name); 
-		_userMode.addShapeString((IStringField)_shape, name);
+//		_shape = new StringField(name); 
+		_userMode.addShapeString(name);
 		newShape(DrawMode.NONE);
 	}
 
@@ -430,8 +433,8 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 	 */
 	@Override
 	public void editShapeName(String name) {
-		IStringField shape = (IStringField)_selectShapes.get(0);
-		shape.setName(name);
+		IAreaShape shape = (IAreaShape)_selectShapes.get(0);
+		shape.editShapeString(name);
 		notifyPaintChange();
 	}
 
@@ -444,47 +447,5 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 		_selectShapes.removeAll(_selectShapes);
 		notifyPaintChange();
 		notifyMenuItemGroupChange();
-	}
-
-	/**
-	 * save image file
-	 * @param image image to save
-	 * @param file target file
-	 */
-	@Override
-	public void saveFile(RenderedImage image, File file, String fileType) throws IOException{
-		File targetFile = checkFileType(file, fileType);
-		ImageIO.write(image, fileType, targetFile);
-	}
-	
-	/**
-	 * check filename contain file type inside
-	 * @param file file to check
-	 * @param fileType select file type
-	 * @return if original file name does not contain file type return original file.  
-	 * otherwise, return new File object 
-	 */
-	private File checkFileType(File file, String fileType){
-		if(file.toString().endsWith("." + fileType))
-			return file;
-		else {
-			File newFile = new File(file.getAbsolutePath() + "." + fileType);
-			System.out.println(newFile.getAbsolutePath());
-			return newFile;
-		}
-	}
-
-	/**
-	 * get save image format
-	 * @param fileType save file type
-	 * @return save image format
-	 */
-	@Override
-	public int getStoreImageType(String fileType) {
-		if(fileType.equals("png"))
-			return BufferedImage.TYPE_INT_ARGB;
-		else if(fileType.equals("jpg"))
-			return BufferedImage.TYPE_INT_RGB;
-		return 0;
 	}
 }

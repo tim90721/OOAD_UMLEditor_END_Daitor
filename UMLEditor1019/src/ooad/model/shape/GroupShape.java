@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author daitor
  *
  */
-public class GroupShape extends AbstractAreaShape implements IGroupShape{
+public class GroupShape extends AbstractShape implements IGroupShape{
 	private ArrayList<IShape> _groupShapes;
 	
 	/**
@@ -19,12 +19,12 @@ public class GroupShape extends AbstractAreaShape implements IGroupShape{
 		_name = "GroupShape";
 	}
 	
-	/**
-	 * this method don't do anything
-	 */
-	@Override
-	public void addShapeString(IStringField stringField, String name) {
-	}
+//	/**
+//	 * this method don't do anything
+//	 */
+//	@Override
+//	public void addShapeString(IStringField stringField, String name) {
+//	}
 
 	/**
 	 * add shape to group
@@ -67,39 +67,41 @@ public class GroupShape extends AbstractAreaShape implements IGroupShape{
 	 */
 	@Override
 	public void drawShape(Graphics g) {
-		for (IShape shape : _groupShapes) 
+		for (IShape shape : _groupShapes) {
 			shape.drawShape(g);
+			System.out.println(shape.getShapeName());
+		}
 	}
 
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public void setWidth(int width) {
-	}
-
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public void setHeight(int height) {
-	}
-
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public int getWidth() {
-		return 0;
-	}
-
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public int getHeight() {
-		return 0;
-	}
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public void setWidth(int width) {
+//	}
+//
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public void setHeight(int height) {
+//	}
+//
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public int getWidth() {
+//		return 0;
+//	}
+//
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public int getHeight() {
+//		return 0;
+//	}
 
 	/**
 	 * do nothing for this method
@@ -144,20 +146,20 @@ public class GroupShape extends AbstractAreaShape implements IGroupShape{
 		return false;
 	}
 
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public void setCloseSide(CloseSide side) {
-	}
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public void setCloseSide(CloseSide side) {
+//	}
 
-	/**
-	 * do nothing for this method
-	 */
-	@Override
-	public CloseSide getCloseSide() {
-		return CloseSide.None;
-	}
+//	/**
+//	 * do nothing for this method
+//	 */
+//	@Override
+//	public CloseSide getCloseSide() {
+//		return CloseSide.None;
+//	}
 
 	/**
 	 * do nothing for this method
