@@ -67,10 +67,8 @@ public class GroupShape extends AbstractShape implements IGroupShape{
 	 */
 	@Override
 	public void drawShape(Graphics g) {
-		for (IShape shape : _groupShapes) {
+		for (IShape shape : _groupShapes) 
 			shape.drawShape(g);
-			System.out.println(shape.getShapeName());
-		}
 	}
 
 //	/**

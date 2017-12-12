@@ -66,10 +66,8 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 		_userMode.drawing(g, _shape, _mouseX, _mouseY, _closeOffset);
 		if (!isMousePressed() && !isMouseMoving()) 
 			_userMode.storeShape(_shape);
-		for (IShape shape : _shapes){
+		for (IShape shape : _shapes)
 			shape.drawShape(g);
-			System.out.println(shape.getShapeName());
-		}
 		if (isMousePressed())
 			_shape.drawShape(g);
 	}

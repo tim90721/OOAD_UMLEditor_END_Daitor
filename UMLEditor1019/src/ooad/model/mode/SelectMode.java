@@ -54,7 +54,6 @@ public class SelectMode extends AbstractMode {
 					shape.setSelected(true);
 					_selectShapes.add(shape);
 					_hasSelectShape = true;
-					System.out.println("bb");
 				}
 		} else{
 			for (IShape shape : _model.getStoreShapes())
@@ -62,7 +61,6 @@ public class SelectMode extends AbstractMode {
 					shape.setSelected(true);
 					_selectShapes.add(shape);
 					_hasSelectShape = true;
-					System.out.println("ss");
 				}
 			if(_selectShapes.size() > 0){
 				checkShapeDepth();
