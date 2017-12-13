@@ -2,14 +2,15 @@ package ooad.model.shape;
 
 import java.awt.Graphics;
 
-public class Port {
-	private int _x, _y;
+public class Port extends Point{
+	
 	public static int _portWidth = 10;
+	
 	/**
 	 * constructor
 	 */
 	public Port() {
-	
+		super();
 	}
 	
 	/**
@@ -18,40 +19,12 @@ public class Port {
 	 * @param y coordinate y
 	 */
 	public Port(int x, int y) {
-		this._x = x;
-		this._y = y;
+		super(x, y);
 	}
 	
-	/**
-	 * set x
-	 * @param x coordinate x
-	 */
-	public void setX(int x) {
-		this._x = x;
-	}
-	
-	/**
-	 * set y
-	 * @param y coordinate y
-	 */
-	public void setY(int y) {
-		this._y = y;
-	}
-	
-	/**
-	 * get x
-	 * @return x
-	 */
-	public int getX() {
-		return this._x;
-	}
-	
-	/**
-	 * get y
-	 * @return y
-	 */
-	public int getY() {
-		return this._y;
+	public Port(Point point){
+		this._x = point.getX();
+		this._y = point.getY();
 	}
 	
 	/**
@@ -59,6 +32,6 @@ public class Port {
 	 * @param g Graphics
 	 */
 	public void drawPort(Graphics g) {
-		g.fillRect(_x, _y, _portWidth, _portWidth);
+		g.fillRect(getX(), getY(), _portWidth, _portWidth);
 	}
 }

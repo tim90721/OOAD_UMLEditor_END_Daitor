@@ -48,8 +48,8 @@ public abstract class BasicLine extends AbstractShape implements IBasicLine{
 	 */
 	@Override
 	public void setMiddle() {
-		setDifX(_startX - _endX);
-		setDifY(_startY - _endY);
+		setDifX(getStartX() - getEndX());
+		setDifY(getStartY() - getEndY());
 	}
 	
 	/**

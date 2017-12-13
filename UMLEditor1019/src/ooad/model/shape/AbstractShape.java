@@ -8,14 +8,23 @@ import java.awt.Graphics;
  *
  */
 public abstract class AbstractShape implements IShape{
-	int _depth;
-	protected int _startX, _startY;
-	protected int _endX, _endY;
-	private int _middelX, _middelY;
+	private int _depth;
+	protected Point _startPoint;
+	protected Point _endPoint;
+	protected Point _middlePoint;
+//	protected int _startX, _startY;
+//	protected int _endX, _endY;
+//	private int _middelX, _middelY;
 	protected boolean _isSelected = false;
-	protected int _selectRectwidth = 10;
 	protected boolean _isLine = false;
 	protected String _name;
+	public static int _selectRectwidth = 10;
+	
+	public AbstractShape() {
+		_startPoint = new Point();
+		_endPoint = new Point();
+		_middlePoint = new Point();
+	}
 	
 	/**
 	 * set shape is select or not
@@ -40,7 +49,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void setStartX(int x) {
-		_startX = x;
+//		_startX = x;
+		_startPoint.setX(x);
 	}
 
 	/**
@@ -49,7 +59,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void setEndX(int x) {
-		_endX = x;
+//		_endX = x;
+		_endPoint.setX(x);
 	}
 
 	/**
@@ -58,7 +69,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void setStartY(int y) {
-		_startY = y;
+//		_startY = y;
+		_startPoint.setY(y);
 	}
 
 	/**
@@ -67,7 +79,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void setEndY(int y) {
-		_endY = y;
+//		_endY = y;
+		_endPoint.setY(y);
 	}
 	
 	/**
@@ -109,7 +122,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public int getStartX() {
-		return _startX;
+//		return _startX;
+		return _startPoint.getX();
 	}
 
 	/**
@@ -118,7 +132,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public int getEndX() {
-		return _endX;
+//		return _endX;
+		return _endPoint.getX();
 	}
 
 	/**
@@ -127,7 +142,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public int getStartY() {
-		return _startY;
+//		return _startY;
+		return _startPoint.getY();
 	}
 
 	/**
@@ -136,7 +152,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public int getEndY() {
-		return _endY;
+//		return _endY;
+		return _endPoint.getY();
 	}
 
 	/**
@@ -145,7 +162,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void setMiddleX(int x) {
-		_middelX = x;
+//		_middelX = x;
+		_middlePoint.setX(x);
 	}
 
 	/**
@@ -154,7 +172,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void setMiddleY(int y) {
-		_middelY = y;
+//		_middelY = y;
+		_middlePoint.setY(y);
 	}
 
 	/**
@@ -163,7 +182,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public int getMiddleX() {
-		return _middelX;
+//		return _middelX;
+		return _middlePoint.getX();
 	}
 
 	/**
@@ -172,7 +192,8 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public int getMiddleY() {
-		return _middelY;
+//		return _middelY;
+		return _middlePoint.getY();
 	}
 
 	/**

@@ -363,7 +363,8 @@ public abstract class AreaShape extends AbstractShape implements
 	 */
 	@Override
 	public void movePos(int difX, int difY) {
-		setStart(_startX - difX, _startY - difY);
+//		setStart(_startX - difX, _startY - difY);
+		setStart(getStartX() - difX, getStartY() - difY);
 		for (IStringField stringField : _strings) 
 			stringField.movPos(difX, difY);
 	}
