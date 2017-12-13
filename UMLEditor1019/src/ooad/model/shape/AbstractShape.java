@@ -1,6 +1,8 @@
 package ooad.model.shape;
 
 import java.awt.Graphics;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * general method for shape
@@ -18,7 +20,7 @@ public abstract class AbstractShape implements IShape{
 	protected boolean _isSelected = false;
 	protected boolean _isLine = false;
 	protected String _name;
-	public static int _selectRectwidth = 10;
+	public static int SELECT_RECT_WIDTH = 10;
 	
 	public AbstractShape() {
 		_startPoint = new Point();
@@ -217,12 +219,12 @@ public abstract class AbstractShape implements IShape{
 	 */
 	@Override
 	public void drawShape(Graphics g) {
-		if(isSelected()){
-			g.fillRect(getMiddleX() - _selectRectwidth / 2, getStartY() - _selectRectwidth, _selectRectwidth, _selectRectwidth);
-			g.fillRect(getMiddleX() - _selectRectwidth / 2, getEndY(), _selectRectwidth, _selectRectwidth);
-			g.fillRect(getStartX() - _selectRectwidth, getMiddleY() - _selectRectwidth / 2, _selectRectwidth, _selectRectwidth);
-			g.fillRect(getEndX(), getMiddleY() - _selectRectwidth / 2, _selectRectwidth, _selectRectwidth);
-		}
+//		if(isSelected()){
+//			g.fillRect(getMiddleX() - SELECT_RECT_WIDTH / 2, getStartY() - SELECT_RECT_WIDTH, SELECT_RECT_WIDTH, SELECT_RECT_WIDTH);
+//			g.fillRect(getMiddleX() - SELECT_RECT_WIDTH / 2, getEndY(), SELECT_RECT_WIDTH, SELECT_RECT_WIDTH);
+//			g.fillRect(getStartX() - SELECT_RECT_WIDTH, getMiddleY() - SELECT_RECT_WIDTH / 2, SELECT_RECT_WIDTH, SELECT_RECT_WIDTH);
+//			g.fillRect(getEndX(), getMiddleY() - SELECT_RECT_WIDTH / 2, SELECT_RECT_WIDTH, SELECT_RECT_WIDTH);
+//		}
 	}
 
 	/**

@@ -3,6 +3,8 @@ package ooad.model.shape;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * general data method for line
@@ -19,6 +21,7 @@ public abstract class BasicLine extends AbstractShape implements IBasicLine{
 	private int _mouseEndY;
 	protected int _rotateEndX, _rotateEndY;
 	private int _hashNumber;
+	protected Map<CloseSide, Port> _linePort;
 	
 	/**
 	 * constructor
@@ -27,6 +30,7 @@ public abstract class BasicLine extends AbstractShape implements IBasicLine{
 		_direction = Direction.VERTICAL;
 		_isLine = true;
 		_hashNumber = (int)(Math.random() * 10000);
+		_linePort = new HashMap<CloseSide, Port>();
 	}
 	
 	/**

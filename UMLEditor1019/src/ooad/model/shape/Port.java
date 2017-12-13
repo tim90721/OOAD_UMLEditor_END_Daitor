@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class Port extends Point{
 	
-	public static int _portWidth = 10;
+	public static int PORT_WIDTH = 10;
 	
 	/**
 	 * constructor
@@ -22,6 +22,10 @@ public class Port extends Point{
 		super(x, y);
 	}
 	
+	/**
+	 * constructor
+	 * @param point port position
+	 */
 	public Port(Point point){
 		this._x = point.getX();
 		this._y = point.getY();
@@ -32,6 +36,6 @@ public class Port extends Point{
 	 * @param g Graphics
 	 */
 	public void drawPort(Graphics g) {
-		g.fillRect(getX(), getY(), _portWidth, _portWidth);
+		g.fillRect(getX(), getY(), PORT_WIDTH, PORT_WIDTH);
 	}
 }
