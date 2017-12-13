@@ -2,12 +2,10 @@ package ooad.viewevent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observer;
 
 import ooad.model.IModeSwitchObserver;
 import ooad.model.IModeSwitchSubject;
 import ooad.model.IModel;
-import ooad.model.IPaintObserver;
 import ooad.model.IPresentationModel;
 
 /**

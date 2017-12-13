@@ -413,7 +413,7 @@ public class Model implements IModel, IPaintSubject, IMenuItemGroupSubject{
 	@Override
 	public void notifyMenuItemGroupChange() {
 		for (IMenuItemGroupObserver observer : _menuObservers) 
-			observer.updateItem();
+			observer.updateMenuItem();
 	}
 
 	/**

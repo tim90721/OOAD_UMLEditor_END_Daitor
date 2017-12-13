@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
  *
  */
 public class SelectShape extends AbstractShape{
-	private int _selectStartX, _selectStartY;
+//	private int _selectStartX, _selectStartY;
 	private Point _selectStartPoint;
 	
 	/**

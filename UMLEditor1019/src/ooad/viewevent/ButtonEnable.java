@@ -3,8 +3,6 @@ package ooad.viewevent;
 import javax.swing.JButton;
 
 import ooad.model.IModeSwitchObserver;
-import ooad.model.IModeSwitchSubject;
-import ooad.model.IPaintObserver;
 import ooad.model.IPresentationModel;
 
 /**
@@ -40,7 +38,7 @@ public class ButtonEnable implements IModeSwitchObserver{
 		_btnClass = btnClass;
 		_btnUseCase = btnUseCase;
 		_presentationModel = presentationModel;
-		RefreshControl();
+		refreshControl();
 	}
 
 	/**
@@ -48,13 +46,13 @@ public class ButtonEnable implements IModeSwitchObserver{
 	 */
 	@Override
 	public void updateMode() {
-		RefreshControl();
+		refreshControl();
 	}
 
 	/**
 	 * refresh button enable 
 	 */
-	public void RefreshControl(){
+	public void refreshControl(){
 		_btnSelect.setEnabled(!_presentationModel.isSelectMode());
 		_btnAssociaLine.setEnabled(!_presentationModel.isAssociaLineMode());
 		_btnGeneralLine.setEnabled(!_presentationModel.isGeneralLineMode());

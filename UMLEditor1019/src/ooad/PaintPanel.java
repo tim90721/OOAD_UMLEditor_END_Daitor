@@ -2,15 +2,12 @@ package ooad;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import ooad.model.IModel;
 import ooad.model.IPaintObserver;
-import ooad.model.Model;
 import ooad.viewevent.CustomMouseHandler;
 
 /**

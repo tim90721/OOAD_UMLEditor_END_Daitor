@@ -12,7 +12,7 @@ import java.util.Map;
  *
  */
 public abstract class BasicLine extends AbstractShape implements IBasicLine{
-	private int _offset = 10;
+//	private int _offset = 10;
 	protected double _distance;
 	protected Direction _direction;
 	protected int _difX, _difY;

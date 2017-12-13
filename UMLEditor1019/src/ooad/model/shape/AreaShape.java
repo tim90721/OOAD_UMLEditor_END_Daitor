@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * general method for area shape, including class graph, use case, string field.
@@ -521,8 +520,4 @@ public abstract class AreaShape extends AbstractShape implements IAreaShape {
 		setWidth(stringField.getWidth());
 		setHeight(stringField.getHeight());
 	}
-}
-
-enum CloseSide {
-	North, South, West, East, None
 }

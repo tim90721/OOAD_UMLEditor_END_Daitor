@@ -2,7 +2,6 @@ package ooad.viewevent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 
 import ooad.model.IEditNameObserver;
@@ -88,7 +87,7 @@ public class CustomMenuHandlerGetter implements IMenuItemGroupSubject,
 	@Override
 	public void notifyMenuItemGroupChange() {
 		for (IMenuItemGroupObserver observer : _groupObservers)
-			observer.updateItem();
+			observer.updateMenuItem();
 	}
 
 	/**

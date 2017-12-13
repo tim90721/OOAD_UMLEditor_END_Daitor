@@ -39,7 +39,7 @@ public class MenuItemEnable implements IMenuItemGroupObserver{
 	 * whenever any menu item click
 	 */
 	@Override
-	public void updateItem() {
+	public void updateMenuItem() {
 		refreshControl();
 	}
 	
